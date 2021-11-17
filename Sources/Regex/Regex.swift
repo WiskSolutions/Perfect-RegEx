@@ -195,8 +195,12 @@ extension String {
 		}while(nomatch == 0)
 		
 		// release temporary allocations
-		free(copy)
-		free(me)
+        if let copy = copy {
+            free(copy)
+        }
+        if let me = me {
+            free(me)
+        }
 		// release resources before checking outcomes
 		regfree(&reg)
 		// release the pointer buffer
